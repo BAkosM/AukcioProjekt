@@ -1,1 +1,1 @@
-# Java-OOP Benedek Ákos Marcell
+# AukcioProjekt Benedek Ákos Marcell
