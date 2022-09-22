@@ -21,10 +21,11 @@ public class Main {
         double menyi = 0;
         String menu = "";
         while(i<1){
-            System.out.println("Mit szeterne csinálni a(licit 10%) b(licit x%) c(x festmény adatai) d(exit)");
+            System.out.println("Mit szeterne csinálni a(licit 10%) b(licit x%) c(x festmény adatai) d(kilépés)");
             menu = sr.next();
             if(menu.equals("d")){
                 i++;
+                System.out.print("Kilépés...");
             }else if(menu.equals("a")){
                 System.out.print("Hanyadik festményre:");
                 hanyadik = sr.nextInt();
