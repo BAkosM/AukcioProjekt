@@ -1,10 +1,4 @@
 package festmeny;
-
-import java.util.ArrayList;
-import java.io.BufferedReader;
-import java.io.Console;
-import java.io.FileReader;
-import java.io.IOException;
 import java.time.LocalDateTime;
 
 public class festmeny {
@@ -15,7 +9,6 @@ public class festmeny {
     private double licitMeret;
     private LocalDateTime legutsoLicit;
     private boolean elkelt;
-    private ArrayList festmenyek;
 
     public festmeny() {
         this.cím = "";
@@ -26,30 +19,16 @@ public class festmeny {
         this.elkelt = false;
     }
 
-    public festmeny(String cím, String festo, String stílus, int licitekSzama, LocalDateTime legutsoLicit,boolean elkelt) {
+    public festmeny(String cím, String festo, String stílus) {
         this.cím = cím;
         this.festo = festo;
         this.stílus = stílus;
-        this.licitekSzama = licitekSzama;
-        this.legutsoLicit = legutsoLicit;
-        this.elkelt = elkelt;
+        this.licitekSzama = 0;
+        this.legutsoLicit = null;
+        this.elkelt = false;
     }
 
-    public festmeny(String fajlNev) throws IOException {
-        this.festmenyek = new ArrayList<>();
-        FileReader fr = new FileReader(fajlNev);
-        BufferedReader br = new BufferedReader(fr);
-        String sor = br.readLine();
-        while (sor!= null && sor.equals("")) {
-            String[] adatok = sor.split(";");
-            festmeny festmeny = new festmeny(adatok[0],adatok[1],adatok[2],0,null,false);
-            this.festmenyek.add(festmeny);
-            sor = br.readLine();
-        }
-        br.close();
-        fr.close();
-    }
-    public static void licit(boolean elkelt, int licitekSzama, double licitMeret, LocalDateTime legutsoLicit){
+    public void licit(){
         if(elkelt==true){
             System.out.println("Ez a festmény már elkelt!");
         }else if(licitekSzama  == 0){
@@ -62,25 +41,26 @@ public class festmeny {
             legutsoLicit = LocalDateTime.now();
         }
     }
-    /*public static void licitmeret(boolean elkelt, int licitekSzama, double licitMeret, LocalDateTime legutsoLicit){
+    public void licitmeret(int mennyi){
         if(elkelt==true){
             System.out.println("Ez a festmény már elkelt!");
         }else if(licitekSzama  == 0){
             licitMeret = 100;
             licitekSzama++;
             legutsoLicit = LocalDateTime.now();
-        }else if(menyi > 100 || menyi < 0){
+        }else if(mennyi > 100 || mennyi < 0){
             System.out.println("Nem megfelelő méret csak (0-100) elfogadható!");
         }else{
             licitMeret = licitMeret*1.1;
             licitekSzama++;
             legutsoLicit = LocalDateTime.now();
         }
-    }*/
+    }
     @Override
     public String toString() {
-        String elk = "";
+        /*String elk = "";
         if(elkelt==true){elk = "elkelt";}else{elk = "nem kelt el";}
-        return String.format("%s: %s(%s)\n %s \n %.0f - "+legutsoLicit+" (Összesen: %d db)", festo,cím,stílus,elk,licitMeret,licitekSzama);
+        return String.format("%s: %s(%s)\n %s \n %.0f - "+legutsoLicit+" (Összesen: %d db)", festo,cím,stílus,elk,licitMeret,licitekSzama);*/
+        return String.format("\n\n%s: %s(%s)\n%b\nLegmagasabb licit: %.0f - "+legutsoLicit+" (összesen: %d db)",festo,cím,stílus,elkelt,licitMeret,licitekSzama);
     }
 }
